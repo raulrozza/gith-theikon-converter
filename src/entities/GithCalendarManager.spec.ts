@@ -27,5 +27,17 @@ describe('GithCalendarManager', () => {
             month: 'Deirant',
             year: 885,
         });
+
+        expect(
+            manager.convert({
+                day: 25,
+                month: 'Quinto',
+                year: 901,
+            }),
+        ).toEqual({
+            day: 57,
+            month: 'Dosaigh',
+            year: 894,
+        });
     });
 });

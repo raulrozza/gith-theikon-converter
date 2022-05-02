@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for GithCalendarManager.ts</title>
+    <title>Code coverage report for TheikonCalendarManager.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> GithCalendarManager.ts</h1>
+        <h1><a href="index.html">All files</a> TheikonCalendarManager.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>39/39</span>
+                <span class='fraction'>37/37</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>39/39</span>
+                <span class='fraction'>37/37</span>
             </div>
         
             
@@ -100,11 +100,7 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -126,8 +122,8 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">39x</span>
-<span class="cline-any cline-yes">39x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -142,20 +138,18 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { CalendarDate } from '../@types/Calendar';
-import { GITH_CALENDAR } from '../constants/calendars';
+import { THEIKON_CALENDAR } from '../constants/calendars';
 import { CalendarManager } from './CalendarManager';
-import { TheikonCalendarManager } from './TheikonCalendarManager';
+import { GithCalendarManager } from './GithCalendarManager';
 &nbsp;
-const LEAP_YEAR_INTERVAL = 4;
-&nbsp;
-export class GithCalendarManager extends CalendarManager {
+export class TheikonCalendarManager extends CalendarManager {
     constructor() {
-        super(GITH_CALENDAR, LEAP_YEAR_INTERVAL);
+        super(THEIKON_CALENDAR, 0);
     }
 &nbsp;
     public convert(date: CalendarDate): CalendarDate {
         const daysSinceReferenceYear = this.getDaysSinceReferenceYear(date);
-        return this.getDateFromTheikonCalendar(daysSinceReferenceYear);
+        return this.getDateFromGithCalendar(daysSinceReferenceYear);
     }
 &nbsp;
     private getDaysSinceReferenceYear({
@@ -165,19 +159,19 @@ export class GithCalendarManager extends CalendarManager {
     }: CalendarDate): number {
         let days = 0;
         for (let i = this.calendar.reference; i &lt; year; i++) {
-            days += this.getDaysInYear(i, true);
+            days += this.getDaysInYear(i, false);
         }
-        days += this.getDaysInCurrentYear(day, month, year, true);
+        days += this.getDaysInCurrentYear(day, month, year, false);
 &nbsp;
         return days;
     }
 &nbsp;
-    private getDateFromTheikonCalendar(
+    private getDateFromGithCalendar(
         daysSinceReferenceYear: number,
     ): CalendarDate {
-        const manager = new TheikonCalendarManager();
+        const manager = new GithCalendarManager();
 &nbsp;
-        return manager.getDate(daysSinceReferenceYear, false);
+        return manager.getDate(daysSinceReferenceYear, true);
     }
 }
 &nbsp;</pre></td></tr></table></pre>

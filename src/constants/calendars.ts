@@ -1,7 +1,7 @@
 import { Calendar } from '../@types/Calendar';
 
 export const GITH_CALENDAR: Calendar = {
-    reference: 865,
+    reference: 1,
     postFix: 'Un',
     months: [
         ['Empeço', 30],
@@ -20,7 +20,7 @@ export const GITH_CALENDAR: Calendar = {
 };
 
 export const THEIKON_CALENDAR: Calendar = {
-    reference: 885,
+    reference: 669,
     postFix: 'P',
     months: [
         ['Tosaigh', 90],

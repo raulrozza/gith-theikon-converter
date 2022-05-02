@@ -53,6 +53,22 @@ export abstract class CalendarManager {
         daysSinceReferenceYear: number,
         hasLeapYear: boolean,
     ): CalendarDate {
+        if (daysSinceReferenceYear >= 0)
+            return this.getDateFromPositiveOffset(
+                daysSinceReferenceYear,
+                hasLeapYear,
+            );
+
+        return this.getDateFromNegativeOffset(
+            daysSinceReferenceYear,
+            hasLeapYear,
+        );
+    }
+
+    private getDateFromPositiveOffset(
+        daysSinceReferenceYear: number,
+        hasLeapYear: boolean,
+    ): CalendarDate {
         let days = daysSinceReferenceYear;
 
         let year = this.calendar.reference;
@@ -79,6 +95,49 @@ export abstract class CalendarManager {
             if (actualDaysInMonth >= days) {
                 return {
                     day: days,
+                    month,
+                    year,
+                };
+            }
+
+            days -= actualDaysInMonth;
+        }
+
+        throw new Error('Invalid date');
+    }
+
+    private getDateFromNegativeOffset(
+        daysSinceReferenceYear: number,
+        hasLeapYear: boolean,
+    ): CalendarDate {
+        let days = daysSinceReferenceYear * -1;
+
+        let year = this.calendar.reference - 1;
+        while (true) {
+            const yearDays = this.getDaysInYear(year, hasLeapYear);
+
+            if (days < yearDays) break;
+
+            days -= yearDays;
+
+            year--;
+        }
+
+        const months = [...this.calendar.months].reverse();
+
+        for (let i = 0; i < months.length; i++) {
+            const [month, daysInMonth, leap] = months[i];
+
+            const isLeapYear = hasLeapYear
+                ? year % this.leapYearInterval === 0
+                : false;
+
+            const actualDaysInMonth =
+                daysInMonth + (leap && isLeapYear ? 1 : 0);
+
+            if (actualDaysInMonth >= days) {
+                return {
+                    day: actualDaysInMonth - days + 1,
                     month,
                     year,
                 };

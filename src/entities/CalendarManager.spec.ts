@@ -95,6 +95,26 @@ describe('CalendarManager', () => {
                 month: 'June',
                 year: 2010,
             });
+            expect(manager.getDate(-1, false)).toEqual({
+                day: 31,
+                month: 'December',
+                year: 1999,
+            });
+            expect(manager.getDate(-31, false)).toEqual({
+                day: 1,
+                month: 'December',
+                year: 1999,
+            });
+            expect(manager.getDate(-45, false)).toEqual({
+                day: 17,
+                month: 'November',
+                year: 1999,
+            });
+            expect(manager.getDate(-3808, true)).toEqual({
+                day: 27,
+                month: 'July',
+                year: 1989,
+            });
         });
 
         it('should return the expected date in a leap calendar', () => {
@@ -119,6 +139,26 @@ describe('CalendarManager', () => {
                 day: 4,
                 month: 'June',
                 year: 2010,
+            });
+            expect(manager.getDate(-1, false)).toEqual({
+                day: 31,
+                month: 'December',
+                year: 1999,
+            });
+            expect(manager.getDate(-31, false)).toEqual({
+                day: 1,
+                month: 'December',
+                year: 1999,
+            });
+            expect(manager.getDate(-45, false)).toEqual({
+                day: 17,
+                month: 'November',
+                year: 1999,
+            });
+            expect(manager.getDate(-3808, true)).toEqual({
+                day: 29,
+                month: 'July',
+                year: 1989,
             });
         });
     });

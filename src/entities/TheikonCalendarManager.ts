@@ -9,11 +9,11 @@ export class TheikonCalendarManager extends CalendarManager {
     }
 
     public convert(date: CalendarDate): CalendarDate {
-        const daysSinceReferenceYear = this.getDaysSinceReferenceYear(date);
-        return this.getDateFromGithCalendar(daysSinceReferenceYear);
+        const daysFromReferenceYear = this.getDaysFromReferenceYear(date);
+        return this.getDateFromGithCalendar(daysFromReferenceYear);
     }
 
-    private getDaysSinceReferenceYear({
+    private getDaysFromReferenceYear({
         day,
         month,
         year,
@@ -28,10 +28,10 @@ export class TheikonCalendarManager extends CalendarManager {
     }
 
     private getDateFromGithCalendar(
-        daysSinceReferenceYear: number,
+        daysFromReferenceYear: number,
     ): CalendarDate {
         const manager = new GithCalendarManager();
 
-        return manager.getDate(daysSinceReferenceYear, true);
+        return manager.getDate(daysFromReferenceYear, true);
     }
 }

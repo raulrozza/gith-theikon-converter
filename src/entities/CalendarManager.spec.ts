@@ -11,7 +11,7 @@ class CalendarManagerImplementation extends CalendarManager {
 
 describe('CalendarManager', () => {
     const calendar: Calendar = {
-        reference: 0,
+        reference: 2000,
         postFix: 'Postfix',
         months: [
             ['January', 31],
@@ -68,6 +68,58 @@ describe('CalendarManager', () => {
             expect(manager.getDaysInCurrentYear(17, 'June', 2019, true)).toBe(
                 168,
             );
+        });
+    });
+
+    describe('getDate', () => {
+        it('should return the expected date in a non leap calendar', () => {
+            const manager = new CalendarManagerImplementation(calendar, 0);
+
+            expect(manager.getDate(1, false)).toEqual({
+                day: 1,
+                month: 'January',
+                year: 2000,
+            });
+            expect(manager.getDate(31, false)).toEqual({
+                day: 31,
+                month: 'January',
+                year: 2000,
+            });
+            expect(manager.getDate(45, false)).toEqual({
+                day: 14,
+                month: 'February',
+                year: 2000,
+            });
+            expect(manager.getDate(3808, false)).toEqual({
+                day: 7,
+                month: 'June',
+                year: 2010,
+            });
+        });
+
+        it('should return the expected date in a leap calendar', () => {
+            const manager = new CalendarManagerImplementation(calendar, 4);
+
+            expect(manager.getDate(1, true)).toEqual({
+                day: 1,
+                month: 'January',
+                year: 2000,
+            });
+            expect(manager.getDate(31, true)).toEqual({
+                day: 31,
+                month: 'January',
+                year: 2000,
+            });
+            expect(manager.getDate(45, true)).toEqual({
+                day: 14,
+                month: 'February',
+                year: 2000,
+            });
+            expect(manager.getDate(3808, true)).toEqual({
+                day: 4,
+                month: 'June',
+                year: 2010,
+            });
         });
     });
 

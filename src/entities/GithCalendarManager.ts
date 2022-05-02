@@ -1,6 +1,7 @@
 import { CalendarDate } from '../@types/Calendar';
 import { GITH_CALENDAR } from '../constants/calendars';
 import { CalendarManager } from './CalendarManager';
+import { TheikonCalendarManager } from './TheikonCalendarManager';
 
 const LEAP_YEAR_INTERVAL = 4;
 
@@ -10,19 +11,29 @@ export class GithCalendarManager extends CalendarManager {
     }
 
     public convert(date: CalendarDate): CalendarDate {
-        const daysSinceYearOne = this.getGithDaysFromYearOne(date);
-
-        return date;
+        const daysSinceReferenceYear = this.getDaysSinceReferenceYear(date);
+        return this.getDateFromTheikonCalendar(daysSinceReferenceYear);
     }
 
-    private getGithDaysFromYearOne({ day, month, year }: CalendarDate): number {
+    private getDaysSinceReferenceYear({
+        day,
+        month,
+        year,
+    }: CalendarDate): number {
         let days = 0;
-        for (let i = 1; i < year; i++) {
+        for (let i = this.calendar.reference; i < year; i++) {
             days += this.getDaysInYear(i, true);
         }
-        // add the days from the current month
         days += this.getDaysInCurrentYear(day, month, year, true);
 
         return days;
+    }
+
+    private getDateFromTheikonCalendar(
+        daysSinceReferenceYear: number,
+    ): CalendarDate {
+        const manager = new TheikonCalendarManager();
+
+        return manager.getDate(daysSinceReferenceYear, false);
     }
 }

@@ -1,7 +1,10 @@
 import { Calendar, CalendarDate } from '../@types/Calendar';
 
 export abstract class CalendarManager {
-    constructor(private calendar: Calendar, private leapYearInterval: number) {}
+    constructor(
+        protected calendar: Calendar,
+        protected leapYearInterval: number,
+    ) {}
 
     public getDaysInYear(year: number, hasLeapYear: boolean): number {
         const isLeapYear = hasLeapYear
@@ -44,6 +47,47 @@ export abstract class CalendarManager {
         }
 
         return days;
+    }
+
+    public getDate(
+        daysSinceReferenceYear: number,
+        hasLeapYear: boolean,
+    ): CalendarDate {
+        let days = daysSinceReferenceYear;
+
+        let year = this.calendar.reference;
+        while (true) {
+            const yearDays = this.getDaysInYear(year, hasLeapYear);
+
+            if (days < yearDays) break;
+
+            days -= yearDays;
+
+            year++;
+        }
+
+        for (let i = 0; i < this.calendar.months.length; i++) {
+            const [month, daysInMonth, leap] = this.calendar.months[i];
+
+            const isLeapYear = hasLeapYear
+                ? year % this.leapYearInterval === 0
+                : false;
+
+            const actualDaysInMonth =
+                daysInMonth + (leap && isLeapYear ? 1 : 0);
+
+            if (actualDaysInMonth >= days) {
+                return {
+                    day: days,
+                    month,
+                    year,
+                };
+            }
+
+            days -= actualDaysInMonth;
+        }
+
+        throw new Error('Invalid date');
     }
 
     public printDate(date: CalendarDate): string {

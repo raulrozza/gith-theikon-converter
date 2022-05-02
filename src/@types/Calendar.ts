@@ -10,8 +10,8 @@ export interface Calendar {
   postFix: string;
 }
 
-export interface CalendarDate {
+export interface CalendarDate<T extends string = string> {
   day: number;
-  month: string;
+  month: T;
   year: number;
 }

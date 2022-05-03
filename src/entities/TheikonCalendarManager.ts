@@ -64,4 +64,13 @@ export class TheikonCalendarManager extends CalendarManager {
 
         return manager.getDate(daysFromReferenceYear, true);
     }
+
+    public printDate(date: CalendarDate<string>): string {
+        const monthIndex = this.calendar.months.findIndex(
+            ([name]) => name === date.month,
+        );
+        const quarter = Math.ceil((monthIndex + 1) / 4);
+
+        return `${date.day} ${date.month}, ${quarter}/4 ${date.year} ${this.calendar.postFix}`;
+    }
 }

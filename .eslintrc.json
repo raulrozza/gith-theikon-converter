@@ -30,6 +30,7 @@
                 "arrowParens": "avoid"
             }
         ],
-        "no-useless-constructor": "off"
+        "no-useless-constructor": "off",
+        "@typescript-eslint/no-explicit-any": "off"
     }
 }

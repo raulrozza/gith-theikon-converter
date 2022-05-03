@@ -2,6 +2,7 @@ import { CalendarDate } from './@types/Calendar';
 import { makeCalendarManager } from './factories/makeCalendarManager';
 import yargs from 'yargs';
 import { CommandValidation } from './validation/CommandValidation';
+import { capitalize } from 'lodash';
 
 type CalendarType = 'gith' | 'theikon';
 
@@ -29,7 +30,7 @@ try {
     const date = convert(
         {
             day: Number(day),
-            month: String(month),
+            month: capitalize(String(month)),
             year: Number(year),
         },
         calendar as CalendarType,

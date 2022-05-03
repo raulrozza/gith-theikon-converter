@@ -78,4 +78,38 @@ describe('TheikonCalendarManager', () => {
             year: -14,
         });
     });
+
+    it('should print the dates correctly', () => {
+        expect(
+            manager.printDate({
+                day: 1,
+                month: 'Tosaigh',
+                year: 885,
+            }),
+        ).toBe('1 Tosaigh, 1/4 885 P');
+
+        expect(
+            manager.printDate({
+                day: 55,
+                month: 'Teas',
+                year: 907,
+            }),
+        ).toBe('55 Teas, 2/4 907 P');
+
+        expect(
+            manager.printDate({
+                day: 32,
+                month: 'Griamhar',
+                year: 501,
+            }),
+        ).toBe('32 Griamhar, 3/4 501 P');
+
+        expect(
+            manager.printDate({
+                day: 92,
+                month: 'Deireadh',
+                year: 1200,
+            }),
+        ).toBe('92 Deireadh, 4/4 1200 P');
+    });
 });

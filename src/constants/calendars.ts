@@ -15,7 +15,7 @@ export const GITH_CALENDAR: Calendar = {
         ['Nono', 30],
         ['Solar', 31],
         ['Penúltimo', 30],
-        ['Mês da Virada', 30, true],
+        ['Mês da virada', 30, true],
     ],
 };
 

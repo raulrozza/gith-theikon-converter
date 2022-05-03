@@ -30,7 +30,7 @@ try {
     const date = convert(
         {
             day: Number(day),
-            month: capitalize(String(month)),
+            month: capitalize(String(month).replaceAll('_', ' ')),
             year: Number(year),
         },
         calendar as CalendarType,

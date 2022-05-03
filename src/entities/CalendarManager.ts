@@ -110,13 +110,13 @@ export abstract class CalendarManager {
         daysSinceReferenceYear: number,
         hasLeapYear: boolean,
     ): CalendarDate {
-        let days = daysSinceReferenceYear * -1;
+        let days = Math.abs(daysSinceReferenceYear);
 
         let year = this.calendar.reference - 1;
         while (true) {
             const yearDays = this.getDaysInYear(year, hasLeapYear);
 
-            if (days < yearDays) break;
+            if (days <= yearDays) break;
 
             days -= yearDays;
 

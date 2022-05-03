@@ -13,7 +13,14 @@ export class TheikonCalendarManager extends CalendarManager {
         return this.getDateFromGithCalendar(daysFromReferenceYear);
     }
 
-    private getDaysFromReferenceYear({
+    private getDaysFromReferenceYear(date: CalendarDate): number {
+        if (date.year >= this.calendar.reference)
+            return this.getDaysFromReferenceYearForward(date);
+
+        return this.getDaysFromReferenceYearBackward(date);
+    }
+
+    private getDaysFromReferenceYearForward({
         day,
         month,
         year,
@@ -25,6 +32,29 @@ export class TheikonCalendarManager extends CalendarManager {
         days += this.getDaysInCurrentYear(day, month, year, false);
 
         return days;
+    }
+
+    private getDaysFromReferenceYearBackward({
+        day,
+        month,
+        year,
+    }: CalendarDate): number {
+        let days = 0;
+        for (let i = this.calendar.reference - 1; i > year; i--) {
+            days += this.getDaysInYear(i, false);
+        }
+
+        const totalDaysInYear = this.getDaysInYear(year, false);
+        const daysInCurrentYear = this.getDaysInCurrentYear(
+            day,
+            month,
+            year,
+            false,
+        );
+        const remainingDaysInYearBackward =
+            totalDaysInYear - daysInCurrentYear + 1;
+
+        return -(days + remainingDaysInYearBackward);
     }
 
     private getDateFromGithCalendar(

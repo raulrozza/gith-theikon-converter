@@ -40,4 +40,42 @@ describe('TheikonCalendarManager', () => {
             year: 901,
         });
     });
+
+    it('should convert dates correctly even from below the gith calendar reference', () => {
+        expect(
+            manager.convert({
+                day: 94,
+                month: 'Deireadh',
+                year: 668,
+            }),
+        ).toEqual({
+            day: 31,
+            month: 'Mês da Virada',
+            year: 0,
+        });
+
+        expect(
+            manager.convert({
+                day: 1,
+                month: 'Tosaigh',
+                year: 668,
+            }),
+        ).toEqual({
+            day: 1,
+            month: 'Empeço',
+            year: -3,
+        });
+
+        expect(
+            manager.convert({
+                day: 83,
+                month: 'Donn',
+                year: 665,
+            }),
+        ).toEqual({
+            day: 19,
+            month: 'Nono',
+            year: -14,
+        });
+    });
 });

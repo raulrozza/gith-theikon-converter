@@ -155,6 +155,11 @@ describe('CalendarManager', () => {
                 month: 'November',
                 year: 1999,
             });
+            expect(manager.getDate(-1418, true)).toEqual({
+                day: 13,
+                month: 'February',
+                year: 1996,
+            });
             expect(manager.getDate(-3808, true)).toEqual({
                 day: 29,
                 month: 'July',

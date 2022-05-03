@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">46.15% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>39/39</span>
+                <span class='fraction'>18/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">46.15% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>39/39</span>
+                <span class='fraction'>18/39</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -111,35 +111,35 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2631x</span>
-<span class="cline-any cline-yes">2631x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { CalendarDate } from '../@types/Calendar';
 import { GITH_CALENDAR } from '../constants/calendars';
@@ -153,32 +153,32 @@ export class GithCalendarManager extends CalendarManager {
         super(GITH_CALENDAR, LEAP_YEAR_INTERVAL);
     }
 &nbsp;
-    public convert(date: CalendarDate): CalendarDate {
-        const daysSinceReferenceYear = this.getDaysSinceReferenceYear(date);
-        return this.getDateFromTheikonCalendar(daysSinceReferenceYear);
-    }
+    public <span class="fstat-no" title="function not covered" >convert(date: CalendarDate): CalendarDate {</span>
+<span class="cstat-no" title="statement not covered" >        const daysFromReferenceYear = this.getDaysFromReferenceYear(date);</span>
+<span class="cstat-no" title="statement not covered" >        return this.getDateFromTheikonCalendar(daysFromReferenceYear);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
-    private getDaysSinceReferenceYear({
-        day,
-        month,
-        year,
-    }: CalendarDate): number {
-        let days = 0;
-        for (let i = this.calendar.reference; i &lt; year; i++) {
-            days += this.getDaysInYear(i, true);
-        }
-        days += this.getDaysInCurrentYear(day, month, year, true);
+    private <span class="fstat-no" title="function not covered" >getDaysFromReferenceYear({</span>
+<span class="cstat-no" title="statement not covered" >        day,</span>
+<span class="cstat-no" title="statement not covered" >        month,</span>
+<span class="cstat-no" title="statement not covered" >        year,</span>
+<span class="cstat-no" title="statement not covered" >    }: CalendarDate): number {</span>
+<span class="cstat-no" title="statement not covered" >        let days = 0;</span>
+<span class="cstat-no" title="statement not covered" >        for (let i = this.calendar.reference; i &lt; year; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            days += this.getDaysInYear(i, true);</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" >        days += this.getDaysInCurrentYear(day, month, year, true);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        return days;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
-        return days;
-    }
-&nbsp;
-    private getDateFromTheikonCalendar(
-        daysSinceReferenceYear: number,
-    ): CalendarDate {
-        const manager = new TheikonCalendarManager();
-&nbsp;
-        return manager.getDate(daysSinceReferenceYear, false);
-    }
+    private <span class="fstat-no" title="function not covered" >getDateFromTheikonCalendar(</span>
+<span class="cstat-no" title="statement not covered" >        daysFromReferenceYear: number,</span>
+<span class="cstat-no" title="statement not covered" >    ): CalendarDate {</span>
+<span class="cstat-no" title="statement not covered" >        const manager = new TheikonCalendarManager();</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        return manager.getDate(daysFromReferenceYear, false);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -187,7 +187,7 @@ export class GithCalendarManager extends CalendarManager {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon May 02 2022 20:02:20 GMT-0300 (Horário Padrão de Brasília)
+                at Tue May 03 2022 12:09:21 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../prettify.js"></script>
         <script>

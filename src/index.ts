@@ -3,24 +3,28 @@ import { makeCalendarManager } from './factories/makeCalendarManager';
 import yargs from 'yargs';
 import { CommandValidation } from './validation/CommandValidation';
 
-const convert = (date: CalendarDate, type: 'gith' | 'theikon') => {
-    const manager = makeCalendarManager(type);
-    const resultManager = makeCalendarManager(
-        type === 'gith' ? 'theikon' : 'gith',
-    );
+type CalendarType = 'gith' | 'theikon';
+
+const convert = (
+    date: CalendarDate,
+    calendar: CalendarType,
+    target: CalendarType,
+) => {
+    const manager = makeCalendarManager(calendar);
+    const targetManager = makeCalendarManager(target);
 
     const result = manager.convert(date);
 
-    return resultManager.printDate(result);
+    return targetManager.printDate(result);
 };
 
-const [calendar, day, month, year] = yargs.command(
+const [calendar, target, day, month, year] = yargs.command(
     '$0 [convert]',
     'convert date',
 ).argv._;
 
 try {
-    CommandValidation.validateSync({ calendar, day, month, year });
+    CommandValidation.validateSync({ calendar, target, day, month, year });
 
     const date = convert(
         {
@@ -28,7 +32,8 @@ try {
             month: String(month),
             year: Number(year),
         },
-        calendar as 'gith' | 'theikon',
+        calendar as CalendarType,
+        target as CalendarType,
     );
 
     console.log(date);

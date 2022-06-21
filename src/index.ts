@@ -14,6 +14,8 @@ const convert = (
     const manager = makeCalendarManager(calendar);
     const targetManager = makeCalendarManager(target);
 
+    if (calendar === target) return manager.printDate(date);
+
     const result = manager.convert(date);
 
     return targetManager.printDate(result);
@@ -40,6 +42,8 @@ try {
     console.log(date);
 } catch (error: any) {
     console.error(
-        `${error.message}. Try \`yarn convert [calendar] [day] [month] [year]`,
+        `${capitalize(
+            error.message,
+        )}. Try \`yarn convert [calendar] [target] [day] [month] [year]`,
     );
 }
